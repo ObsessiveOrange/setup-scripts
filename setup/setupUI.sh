@@ -6,6 +6,7 @@ ppaList=(
 packagesList=(
 	"awesome"
 	"git"
+	"xscreensaver"
 )
 
 # Add ppa
