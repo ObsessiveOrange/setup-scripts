@@ -7,6 +7,8 @@ packagesList=(
 	"awesome"
 	"git"
 	"xscreensaver"
+	"okular"
+	"vim"
 )
 
 # Add ppa
