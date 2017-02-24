@@ -672,3 +672,5 @@ if autorun then
 end
 
 awful.util.spawn_with_shell("xscreensaver -no-splash")
+awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Edge Scrolling' 0 0 0")
+awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Tap Time' 0")
