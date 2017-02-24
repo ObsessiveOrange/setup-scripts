@@ -10,7 +10,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local os    = { getenv = os.getenv, setlocale = os.setlocale }
 
-local theme                                     = {}
+theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
 theme.wallpaper                                 = theme.confdir .. "/wall.png"
 theme.font                                      = "xos4 Terminus 8"
@@ -91,9 +91,8 @@ local markup = lain.util.markup
 
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
-local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#535f7a", ">") .. markup("#de5e1e", " %H:%M "))
-mytextclock.font = theme.font
+local textclock = wibox.widget.textclock(markup.bold(markup("#7788af", " %m/%d/%Y ") .. markup("#de5e1e", " %H:%M ")))
+textclock.font = theme.font
 
 -- Calendar
 theme.cal = lain.widget.calendar({
@@ -185,15 +184,22 @@ local bat = lain.widget.bat({
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
-theme.volume = lain.widget.alsa({
+theme.volume = lain.widget.pulseaudio({
+    cmd = "pacmd list-sinks | sed -n -e '/* index:/p' -e '0,/*/d' -e '/base volume/d' -e '/volume:/p' -e '/muted:/p' -e '/device.string/p' -e '/index:/,$d'",
     settings = function()
-        if volume_now.status == "off" then
-            volume_now.level = "M(" .. volume_now.level .. ")"
+        vlevel = volume_now.left .. "-" .. volume_now.right .. "%"
+        if volume_now.muted == "yes" then
+            vlevel = "M(" .. vlevel .. ")"
         end
 
-        widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.device .. ": " .. vlevel .. " " ))
     end
 })
+theme.volume.widget:buttons(awful.util.table.join(
+    awful.button({}, 1, function() -- left click
+        awful.spawn("pavucontrol")
+    end)
+))
 
 -- Net
 local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
@@ -315,9 +321,8 @@ function theme.at_screen_connect(s)
             temp.widget,
             baticon,
             bat.widget,
-            clockicon,
-            mytextclock,
             wibox.widget.systray(),
+            textclock,
         },
     }
 

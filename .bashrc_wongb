@@ -1,4 +1,4 @@
-rt INTELLIJ_HOME="$HOME/IntelliJ/IDEA/bin"
+export INTELLIJ_HOME="$HOME/IntelliJ/IDEA/bin"
 PATH="$INTELLIJ_HOME:$PATH"
 
 export GOGLAND_HOME="$HOME/Gogland/bin"
@@ -12,3 +12,5 @@ source $HOME/.keychain/$HOSTNAME-sh
 
 alias la="ls -la"
 alias chrome="google-chrome"
+alias intellij="~/intellij/bin/idea.sh"
+alias gogland="~/gogland/bin/gogland.sh"

@@ -1,6 +1,7 @@
 # Define PPAs:
 ppaList=(
 	"ppa:klaus-vormweg/awesome"
+	"ppa:shutter/ppa"
 )
 
 packagesList=(
@@ -10,6 +11,10 @@ packagesList=(
 	"okular"
 	"vim"
 	"keychain"
+	"htop"
+	"arandr"
+	"shutter"
+	"blueman"
 )
 
 # Add ppa
