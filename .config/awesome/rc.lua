@@ -218,7 +218,7 @@ globalkeys = awful.util.table.join(
               {description = "show main menu", group = "awesome"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ altkey, "Control" }, "l",     function () awful.util.spawn("xscreensaver-command -lock") end,
+    awful.key({ modkey, altkey, "Control" }, "l",     function () awful.util.spawn("xscreensaver-command -lock") end,
               {description = "lock the screen", group = "awesome"}),
     --awful.key({ modkey, "Shift"   }, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
     
@@ -633,13 +633,14 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
--- Enable sloppy focus, so that focus follows mouse.
+--[[ Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
         and awful.client.focus.filter(c) then
         client.focus = c
     end
 end)
+--]]
 
 -- No border for maximized clients
 client.connect_signal("focus",
@@ -672,3 +673,4 @@ awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synap
 awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Tap Time' 0")
 awful.util.spawn_with_shell("pulseaudio --start")
 awful.util.spawn_with_shell("blueman-applet")
+

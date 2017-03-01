@@ -96,7 +96,7 @@ textclock.font = theme.font
 
 -- Calendar
 theme.cal = lain.widget.calendar({
-    attach_to = { mytextclock },
+    attach_to = { textclock },
     cal = "cal -h",
     notification_preset = {
 	font = "xos4 Terminus 10",
@@ -265,7 +265,7 @@ function theme.at_screen_connect(s)
     gears.wallpaper.maximized(theme.wallpaper, s, true)
 
     -- Tags
-    awful.tag(awful.util.tagnames, s, awful.layout.layouts)
+    awful.tag(awful.util.tagnames, s, awful.layout.suit.tile)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
