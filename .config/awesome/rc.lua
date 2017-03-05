@@ -673,4 +673,4 @@ awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synap
 awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Tap Time' 0")
 awful.util.spawn_with_shell("pulseaudio --start")
 awful.util.spawn_with_shell("blueman-applet")
-
+awful.util.spawn_with_shell("a2dpWatcher-daemon.sh")

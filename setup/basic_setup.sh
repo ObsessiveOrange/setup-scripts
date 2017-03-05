@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Define PPAs:
 ppaList=(
 	"ppa:klaus-vormweg/awesome"
