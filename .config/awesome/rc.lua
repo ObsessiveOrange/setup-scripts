@@ -220,7 +220,7 @@ globalkeys = awful.util.table.join(
               {description = "show main menu", group = "awesome"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, altkey, "Control" }, "l",     function () awful.util.spawn("xscreensaver-command -lock") end,
+    awful.key({ modkey, altkey, "Control" }, "l",     function () awful.util.spawn("cinnamon-screensaver-command -l") end,
               {description = "lock the screen", group = "awesome"}),
     --awful.key({ modkey, "Shift"   }, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
     
@@ -678,7 +678,7 @@ if autorun then
    end
 end
 
-awful.util.spawn_with_shell("xscreensaver -no-splash")
+awful.util.spawn_with_shell("cinnamon-screensaver")
 awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Edge Scrolling' 0 0 0")
 awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Tap Time' 0")
 awful.util.spawn_with_shell("numlockx on")

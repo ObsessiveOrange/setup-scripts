@@ -9,7 +9,6 @@ ppaList=(
 packagesList=(
 	"awesome"
 	"git"
-	"xscreensaver"
 	"okular"
 	"vim"
 	"keychain"
