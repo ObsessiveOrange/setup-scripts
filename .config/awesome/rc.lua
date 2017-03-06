@@ -63,6 +63,8 @@ local terminal     = "termite"
 local editor       = "vim"
 local gui_editor   = "gvim"
 local browser      = "google-chrome"
+local calculator   = "gnome-calculator"
+local mail         = "google-chrome 'inbox.google.com'"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5" }
@@ -243,6 +245,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "q", function () awful.spawn(browser) end,
               {description = "run browser", group = "launcher"}),
 
+    -- Keyboard Media Keys
+    awful.key({}, "XF86Calculator", function () awful.spawn(calculator) end),
+    awful.key({}, "XF86HomePage", function () awful.spawn(browser) end),
+    awful.key({}, "XF86Mail", function () awful.spawn(mail) end),
+
     -- Tag browsing
     awful.key({ modkey, "Control"   }, "k",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
@@ -264,21 +271,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(-1) end), -- move to previous tag
     awful.key({ modkey, "Shift" }, "d", function () lain.util.delete_tag() end),
     
-    --[[ Default client focus
-    awful.key({ altkey,           }, "j",
-        function ()
-            awful.client.focus.byidx( 1)
-        end,
-        {description = "focus next by index", group = "client"}
-    ),
-    awful.key({ altkey,           }, "k",
-        function ()
-            awful.client.focus.byidx(-1)
-        end,
-        {description = "focus previous by index", group = "client"}
-    ),
-    --]]
-
     -- Client focus
     awful.key({ modkey }, "k",
         function()
@@ -306,7 +298,7 @@ globalkeys = awful.util.table.join(
         {description = "jump to client on right", group = "client"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab",
+    awful.key({ altkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
             if client.focus then
@@ -314,6 +306,20 @@ globalkeys = awful.util.table.join(
             end
         end,
         {description = "go back", group = "client"}),
+--[[
+    awful.key({ altkey,         }, "Tab",
+        function ()
+            awful.client.focus.byidx( 1)
+        end,
+        {description = "focus next by index", group = "client"}
+    ),
+    awful.key({ altkey, "Shift" }, "Tab",
+        function ()
+            awful.client.focus.byidx(-1)
+        end,
+        {description = "focus previous by index", group = "client"}
+    ),
+--]]
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j",      function () awful.client.swap.byidx(  1)    end,
@@ -564,6 +570,10 @@ awful.rules.rules = {
     { rule = { class = "Firefox" },
       properties = { screen = 1, tag = screen[1].tags[1] } },
 
+    -- Set Hangouts to always map on the fifth tag on screen 1.
+    { rule = { class = "Google-chrome", name = "Google Hangouts - bennydictwong@gmail.com" },
+      properties = { sticky = false } },
+
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
 }
@@ -671,6 +681,10 @@ end
 awful.util.spawn_with_shell("xscreensaver -no-splash")
 awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Edge Scrolling' 0 0 0")
 awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Tap Time' 0")
+awful.util.spawn_with_shell("numlockx on")
 awful.util.spawn_with_shell("pulseaudio --start")
+awful.util.spawn_with_shell("pactl load-module module-bluetooth-discover")
 awful.util.spawn_with_shell("blueman-applet")
 awful.util.spawn_with_shell("a2dpWatcher-daemon.sh")
+awful.util.spawn_with_shell("cinnamon-settings-daemon")
+awful.util.spawn_with_shell("redshift-gtk")
