@@ -222,6 +222,8 @@ globalkeys = awful.util.table.join(
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, altkey, "Control" }, "l",     function () awful.util.spawn("cinnamon-screensaver-command -l") end,
               {description = "lock the screen", group = "awesome"}),
+    awful.key({ modkey, altkey, "Control" }, "s",     function () awful.util.spawn("systemctl suspend") end,
+              {description = "suspend computer", group = "awesome"}),
     --awful.key({ modkey, "Shift"   }, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
     
     -- Show/Hide Wibox
@@ -238,6 +240,7 @@ globalkeys = awful.util.table.join(
     -- Launcher
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey,           }, "KP_Enter", function () awful.spawn(terminal) end),
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
     awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end,
