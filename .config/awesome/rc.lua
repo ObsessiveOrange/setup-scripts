@@ -61,7 +61,7 @@ local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "termite"
 local editor       = "vim"
-local gui_editor   = "gvim"
+local explorer     = "nemo"
 local browser      = "google-chrome"
 local calculator   = "gnome-calculator"
 local mail         = "google-chrome 'inbox.google.com'"
@@ -243,8 +243,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "KP_Enter", function () awful.spawn(terminal) end),
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
-    awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end,
-              {description = "run gui-editor", group = "launcher"}),
+    awful.key({ modkey }, "e", function () awful.spawn(explorer) end,
+              {description = "run file explorer", group = "launcher"}),
     awful.key({ modkey }, "q", function () awful.spawn(browser) end,
               {description = "run browser", group = "launcher"}),
 
