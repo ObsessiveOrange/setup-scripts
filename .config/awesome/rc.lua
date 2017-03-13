@@ -9,6 +9,7 @@
 local awesome, client, screen, tag = awesome, client, screen, tag
 local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
 
+local runonce       = require("runonce")
 local gears         = require("gears")
 local awful         = require("awful")
                       require("awful.autofocus")
@@ -61,13 +62,14 @@ local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "termite"
 local editor       = "vim"
-local explorer     = "nemo"
+local explorer     = "nemo --no-desktop"
 local browser      = "google-chrome"
 local calculator   = "gnome-calculator"
 local mail         = "google-chrome 'inbox.google.com'"
+local sysmonitor   = "gnome-system-monitor"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5" }
+awful.util.tagnames = { "1", "2", "3", "4", "5", "6", "7", "8" }
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -247,6 +249,8 @@ globalkeys = awful.util.table.join(
               {description = "run file explorer", group = "launcher"}),
     awful.key({ modkey }, "q", function () awful.spawn(browser) end,
               {description = "run browser", group = "launcher"}),
+    awful.key({ modkey }, "t", function () awful.spawn(sysmonitor) end,
+              {description = "run system monitor", group = "launcher"}),
 
     -- Keyboard Media Keys
     awful.key({}, "XF86Calculator", function () awful.spawn(calculator) end),
@@ -673,21 +677,29 @@ autorun = true
 autorunApps =
 {
    "nm-applet",
-   --"prog1",
+   "xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Edge Scrolling' 0 0 0",
+   "xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Tap Time' 0",
+   "numlockx on",
+   "pulseaudio --start",
+   "pactl load-module module-bluetooth-discover",
+   "blueman-applet",
+   "a2dpWatcher-daemon.sh",
+   "cinnamon-settings-daemon",
+   "redshift-gtk",
+   "cinnamon-screensaver"
 }
 if autorun then
    for app = 1, #autorunApps do
-       awful.util.spawn(autorunApps[app])
+       runonce.run(autorunApps[app])
    end
 end
 
-awful.util.spawn_with_shell("cinnamon-screensaver")
-awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Edge Scrolling' 0 0 0")
+--[[
+runonce.run("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Edge Scrolling' 0 0 0")
 awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Tap Time' 0")
 awful.util.spawn_with_shell("numlockx on")
 awful.util.spawn_with_shell("pulseaudio --start")
 awful.util.spawn_with_shell("pactl load-module module-bluetooth-discover")
 awful.util.spawn_with_shell("blueman-applet")
 awful.util.spawn_with_shell("a2dpWatcher-daemon.sh")
-awful.util.spawn_with_shell("cinnamon-settings-daemon")
-awful.util.spawn_with_shell("redshift-gtk")
+--]]
