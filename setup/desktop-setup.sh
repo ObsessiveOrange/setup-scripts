@@ -9,11 +9,7 @@ ppaList=(
 packagesList=(
 	"awesome"
 	"rofi"
-	"git"
 	"okular"
-	"vim"
-	"keychain"
-	"htop"
 	"arandr"
 	"shutter"
 	"blueman"
@@ -56,16 +52,3 @@ git clone --recursive https://github.com/copycat-killer/awesome-copycats.git
 mv awesome-copycats ~/.config/awesome
 rsync -a --remove-source-files ~/.config/awesome.swp/ ~/.config/awesome/
 rm -rf ~/.config/awesome.swp
-
-## Configure .bashrc & .profile
-if ! grep -q '# include .bashrc_user if it exists' "$HOME/.bashrc"
-then
-	printf "\n# include .bashrc_wongb if it exists\nif [ -f $HOME/.bashrc_wongb ]; then\n    . $HOME/.bashrc_wongb\nfi\n" >> ~/.bashrc
-	cp .bashrc_wongb $HOME/.bashrc_wongb
-fi
-
-if ! grep -q '# include .profile_user if it exists' "$HOME/.profile"
-then
-	printf "\n# include .profile_wongb if it exists\nif [ -f $HOME/.profile_wongb ]; then\n    . $HOME/.profile_wongb\nfi\n" >> ~/.profile
-	cp .profile_wongb $HOME/.profile_wongb
-fi
