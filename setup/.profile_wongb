@@ -1,0 +1,4 @@
+# Define user-aliases
+alias la="ls -la"
+alias chrome="google-chrome"
+alias psgrep="ps aux | grep"

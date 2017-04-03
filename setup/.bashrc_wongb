@@ -1,0 +1,11 @@
+### START-Keychain ###
+# Let  re-use ssh-agent and/or gpg-agent between logins
+/usr/bin/keychain $HOME/.ssh/id_rsa
+source $HOME/.keychain/$HOSTNAME-sh
+### End-Keychain ###
+
+# Also run all .profile scripts as needed
+# include .profile_wongb if it exists
+if [ -f ~/.profile_wongb ]; then
+    . ~/.profile_wongb
+fi

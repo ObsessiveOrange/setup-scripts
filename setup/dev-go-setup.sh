@@ -12,7 +12,7 @@ then
 	printf "\e[1;36mSetting global GOROOT, adding GOROOT/bin to PATH\n\e[m"
 	printf '\n# set global GOROOT and add GOROOT/bin to PATH\n' | sudo tee -a /etc/profile > /dev/null
 	echo 'export GOROOT=/usr/local/go' | sudo tee -a /etc/profile > /dev/null
-	echo 'export PATH=$PATH:$GOROOT' | sudo tee -a /etc/profile > /dev/null
+	echo 'export PATH=$PATH:$GOROOT/bin' | sudo tee -a /etc/profile > /dev/null
 else 
 	
 	printf "\e[1;36mGlobal GOPATH already set, ignoring\n\e[m"

@@ -60,6 +60,7 @@ end
 local chosen_theme = "multicolor"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
+local launcher     = "rofi -combi-modi ssh,drun,run -show combi -modi combi"
 local terminal     = "termite"
 local editor       = "vim"
 local explorer     = "nemo --no-desktop"
@@ -243,7 +244,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey,           }, "KP_Enter", function () awful.spawn(terminal) end),
-    awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey }, "r", function () awful.spawn(launcher) end,
               {description = "run prompt", group = "launcher"}),
     awful.key({ modkey }, "e", function () awful.spawn(explorer) end,
               {description = "run file explorer", group = "launcher"}),
