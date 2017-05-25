@@ -213,8 +213,6 @@ globalkeys = awful.util.table.join(
     -- Take a screenshot
     awful.key({ modkey            }, "p", function() awful.spawn("shutter -s") end,
               {description="screenshot selection", group="awesome"}),
-    awful.key({ modkey, "Shift"   }, "p", function() awful.spawn("shutter -f") end,
-              {description="screenshot all screens", group="awesome"}),
     
     -- Standard Hotkeys
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
@@ -490,7 +488,9 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space",  function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
     awful.key({ modkey, "Shift"   }, "t",      function (c) c.ontop = not c.ontop            end,
-              {description = "toggle keep on top", group = "client"}),
+              {description = "toggle sticky", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "p",      function (c) c.sticky = not c.sticky          end,
+              {description = "toggle pinned/sticky", group = "client"}),
     awful.key({ modkey, "Shift"   }, ",",
         function (c)
             -- The client currently has the input focus, so it cannot be

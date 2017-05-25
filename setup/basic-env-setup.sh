@@ -11,6 +11,19 @@ packagesList=(
 	"htop"
 )
 
+fontPackagesList=(
+	"fonts-cantarell"
+	"lmodern"
+	"ttf-aenigma"
+	"ttf-bitstream-vera"
+	"ttf-engadget"
+	"ttf-mscorefonts-installer"
+	"ttf-sjfonts"
+	"fonts-tuffy"
+	"tv-fonts"
+	"ubuntustudio-font-meta"
+)
+
 # Add ppa
 printf "\e[1;34mAdding APT repositories (PPAs):\n\e[m"
 for i in "${ppaList[@]}"
@@ -29,6 +42,12 @@ echo ""
 packageStr=$(printf "\n> %s" "${packagesList[@]}")
 printf "\e[1;34mInstalling packages: \e[1;36m%s\e[1;34m\n\e[m" "$packageStr"
 sudo apt install -y "${packagesList[@]}"
+echo ""
+
+# Install packages
+fontPackageStr=$(printf "\n> %s" "${fontPackagesList[@]}")
+printf "\e[1;34mInstalling fonts packages: \e[1;36m%s\e[1;34m\n\e[m" "$fontPackageStr"
+sudo apt install -y "${fontPackagesList[@]}"
 echo ""
 
 # Configure .bashrc & .profile
