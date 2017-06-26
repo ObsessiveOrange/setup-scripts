@@ -699,7 +699,8 @@ autorunApps =
    "a2dpWatcher-daemon.sh",
    "cinnamon-settings-daemon",
    "redshift-gtk",
-   "cinnamon-screensaver"
+   "cinnamon-screensaver",
+   "startup-hook.sh"
 }
 if autorun then
    for app = 1, #autorunApps do
@@ -707,12 +708,3 @@ if autorun then
    end
 end
 
---[[
-runonce.run("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Edge Scrolling' 0 0 0")
-awful.util.spawn_with_shell("xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Synaptics Tap Time' 0")
-awful.util.spawn_with_shell("numlockx on")
-awful.util.spawn_with_shell("pulseaudio --start")
-awful.util.spawn_with_shell("pactl load-module module-bluetooth-discover")
-awful.util.spawn_with_shell("blueman-applet")
-awful.util.spawn_with_shell("a2dpWatcher-daemon.sh")
---]]
