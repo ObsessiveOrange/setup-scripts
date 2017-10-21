@@ -62,3 +62,6 @@ then
 	printf "\n# include .profile_wongb if it exists\nif [ -f $HOME/.profile_wongb ]; then\n    . $HOME/.profile_wongb\nfi\n" >> ~/.profile
 	cp .profile_wongb $HOME/.profile_wongb
 fi
+
+# Configure git aliases
+git config --global alias.pushall '!git remote | xargs -L1 git push --all'
