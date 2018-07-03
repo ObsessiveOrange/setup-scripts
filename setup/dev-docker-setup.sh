@@ -3,7 +3,7 @@ printf "\e[1;34mSetting up Docker\n\e[m"
 printf "\e[1;34mPrinting lsb_version\n\e[m"
 cat /etc/os-release
 
-printf "\e[1;33mPlease enter the ubuntu version identifier, then press [Enter]\n\e[m"
+printf "\e[1;33mPlease enter the ubuntu version identifier (eg bionic), then press [Enter]\n\e[m"
 read ubuntu_version
 
 printf "\e[1;34mSetting up APT repositories\n\e[m"

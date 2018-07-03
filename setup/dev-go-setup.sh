@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GOVERSION=1.8
+GOVERSION=1.10
 printf "\e[1;34mSetting up Golang %s\n\e[m" $GOVERSION
 
 printf "\e[1;36mDownloading binary\n\e[m"
